@@ -1,8 +1,11 @@
 import { useMemo } from "react";
-import { Category } from "../../types/category.types";
-import { formatPrice } from "../../utils/format.utils";
+import { formatPrice } from "../../../utils/format.utils";
 
-const RevenueCell = ({ revenue }: Category) => {
+type Props = {
+  revenue: number;
+};
+
+const RevenueCell = ({ revenue }: Props) => {
   const formattedRevenue = useMemo(() => formatPrice(revenue), [revenue]);
   return <>{formattedRevenue}</>;
 };
