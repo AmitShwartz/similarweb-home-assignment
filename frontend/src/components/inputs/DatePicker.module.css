@@ -1,0 +1,8 @@
+.datePicker {
+  border-width: 1px;
+  border-style: solid;
+  border-color: #d1d1d1;
+  border-radius: 4px;
+  margin: 4px;
+  overflow: hidden;
+}
