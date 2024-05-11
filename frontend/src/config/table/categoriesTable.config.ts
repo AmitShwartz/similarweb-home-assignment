@@ -1,11 +1,11 @@
-import ConversionCell from "../../components/categories/ConversionCell";
-import RevenueCell from "../../components/categories/RevenueCell";
-import { Category } from "../../types/category.types";
+import ConversionCell from "../../components/categories/table/ConversionCell";
+import RevenueCell from "../../components/categories/table/RevenueCell";
+import { CategoryTableRow } from "../../types/category.types";
 import { Column } from "../../types/table.types";
 
-export const categoriesTableColumns: Column<Category>[] = [
+export const categoriesTableColumns: Column<CategoryTableRow>[] = [
   {
-    id: "category_name",
+    id: "categoryName",
     header: "Category Name",
     isNumeric: false,
   },
@@ -15,7 +15,7 @@ export const categoriesTableColumns: Column<Category>[] = [
     isNumeric: false,
   },
   {
-    id: "product_view",
+    id: "productView",
     header: "Product View",
     isNumeric: true,
   },
@@ -26,7 +26,7 @@ export const categoriesTableColumns: Column<Category>[] = [
     Component: RevenueCell,
   },
   {
-    id: "units_sold",
+    id: "unitsSold",
     header: "Units Sold",
     isNumeric: true,
   },
@@ -34,6 +34,20 @@ export const categoriesTableColumns: Column<Category>[] = [
     id: "CVR",
     header: "CVR",
     isNumeric: true,
-    Component: ConversionCell,
+    Component: ({ unitsSold, productView }) =>
+      ConversionCell({
+        value: unitsSold,
+        total: productView,
+      }),
+  },
+  {
+    id: "changeRate",
+    header: "Change Rate",
+    isNumeric: true,
+    Component: ({ startDateUnitsSold, endDateUnitsSold }) =>
+      ConversionCell({
+        value: startDateUnitsSold,
+        total: endDateUnitsSold,
+      }),
   },
 ];
