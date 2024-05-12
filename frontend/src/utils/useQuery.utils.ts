@@ -3,7 +3,6 @@ import { FetchCategoriesParams } from "../api/categories/categories.api.interfac
 export const buildFetchCategoriesQueryKey = ({
   startDate,
   endDate,
-  page,
 }: Partial<FetchCategoriesParams>) => {
-  return ["Categories", page, startDate, endDate];
+  return ["Categories", startDate, endDate];
 };

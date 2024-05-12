@@ -10,7 +10,6 @@ const MAX_CATEGORIES_SELECTION = 2;
 class CategoriesStore extends StoreBase {
   categories: Categories = {};
   selectedCategoriesGraphOptions: Dictionary<string> = {};
-  page: number = 1;
   startDate: string | undefined = undefined;
   endDate: string | undefined = undefined;
 
@@ -20,13 +19,11 @@ class CategoriesStore extends StoreBase {
     makeObservable(this, {
       categories: observable,
       selectedCategoriesGraphOptions: observable,
-      page: observable,
       startDate: observable,
       endDate: observable,
 
       setCategories: action,
       setSelectedCategoriesGraphOptions: action,
-      setCategoriesPage: action,
       setStartDate: action,
       setEndDate: action,
 
@@ -39,7 +36,6 @@ class CategoriesStore extends StoreBase {
       properties: [
         "categories",
         "selectedCategoriesGraphOptions",
-        "page",
         "startDate",
         "endDate",
       ],
@@ -50,7 +46,7 @@ class CategoriesStore extends StoreBase {
       },
       expireIn: DAY_IN_MS,
       removeOnExpiration: true,
-      stringify: false,
+      stringify: true,
       debugMode: true,
     });
   }
@@ -61,10 +57,6 @@ class CategoriesStore extends StoreBase {
 
   setSelectedCategoriesGraphOptions = (options: Dictionary<string>) => {
     this.selectedCategoriesGraphOptions = options;
-  };
-
-  setCategoriesPage = (page: number) => {
-    this.page = page;
   };
 
   setStartDate = (date: string) => {

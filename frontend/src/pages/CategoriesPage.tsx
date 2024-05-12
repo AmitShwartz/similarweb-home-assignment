@@ -8,8 +8,8 @@ import CategoriesDateRange from "../components/categories/CategoriesDateRange";
 const CategoriesPage = () => {
   useCategoriesPage();
   return (
-    <Container maxW="container.lg" centerContent paddingY={4} paddingX={0}>
-      <Heading marginBottom={20}>SimilarWeb Categories Trends</Heading>
+    <Container maxW="container.xl" paddingY={4} paddingX={0} color={"gray.700"}>
+      <Heading marginBottom={10}>SimilarWeb Categories Trends</Heading>
       <CategoriesDateRange />
       <CategoriesGraph />
       <CategoriesTable />

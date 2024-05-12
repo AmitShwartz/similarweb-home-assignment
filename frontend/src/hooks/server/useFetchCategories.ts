@@ -10,36 +10,29 @@ import useCategoriesStore from "../stores/useCategoriesStore";
 type FetchCategoriesHook = {
   startDate?: string;
   endDate?: string;
-  page?: number;
 };
 
-const useFetchCategories = ({
-  startDate,
-  endDate,
-  page,
-}: FetchCategoriesHook) => {
+const useFetchCategories = ({ startDate, endDate }: FetchCategoriesHook) => {
   const { onError } = useOnServerError();
   const { setCategories: onSuccess } = useCategoriesStore();
 
   const queryKey = useMemo(
     () =>
       buildFetchCategoriesQueryKey({
-        page,
         startDate,
         endDate,
       }),
-    [page, startDate, endDate]
+    [startDate, endDate]
   );
 
   const { data, isLoading, error } = useQuery<Categories, AxiosError>({
     queryKey,
     queryFn: () => {
-      if (!startDate || !endDate || !page) return {} as Categories;
+      if (!startDate || !endDate) return {} as Categories;
 
       return categoriesService.fetchCategories({
         startDate,
         endDate,
-        page,
       });
     },
     onError,

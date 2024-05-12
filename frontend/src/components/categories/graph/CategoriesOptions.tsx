@@ -8,10 +8,10 @@ type Props = {
 const CategoriesOptions = ({ categoriesNames }: Props) => {
   return categoriesNames.length ? (
     <>
-      <Text align="center" fontSize="xl" marginBottom={4}>
+      <Text fontSize="lg" marginBottom={4}>
         Select categories to display on the graph:
       </Text>
-      <Flex justify="center" marginBottom={4}>
+      <Flex marginBottom={4}>
         {categoriesNames.map((categoryName) => (
           <CategoryOption key={categoryName} categoryName={categoryName} />
         ))}

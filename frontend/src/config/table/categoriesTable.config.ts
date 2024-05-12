@@ -1,5 +1,8 @@
-import ConversionCell from "../../components/categories/table/ConversionCell";
-import RevenueCell from "../../components/categories/table/RevenueCell";
+import {
+  ChangeRateCell,
+  ConversionCell,
+  RevenueCell,
+} from "../../components/categories/table/Cells";
 import { CategoryTableRow } from "../../types/category.types";
 import { Column } from "../../types/table.types";
 
@@ -7,11 +10,6 @@ export const categoriesTableColumns: Column<CategoryTableRow>[] = [
   {
     id: "categoryName",
     header: "Category Name",
-    isNumeric: false,
-  },
-  {
-    id: "date",
-    header: "Date",
     isNumeric: false,
   },
   {
@@ -42,12 +40,12 @@ export const categoriesTableColumns: Column<CategoryTableRow>[] = [
   },
   {
     id: "changeRate",
-    header: "Change Rate",
+    header: "Range Change Rate",
     isNumeric: true,
     Component: ({ startDateUnitsSold, endDateUnitsSold }) =>
-      ConversionCell({
-        value: startDateUnitsSold,
-        total: endDateUnitsSold,
+      ChangeRateCell({
+        startValue: startDateUnitsSold,
+        endValue: endDateUnitsSold,
       }),
   },
 ];

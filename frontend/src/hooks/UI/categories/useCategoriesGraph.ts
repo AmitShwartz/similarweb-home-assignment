@@ -29,6 +29,8 @@ const useCategoriesGraph = () => {
     if (isEmpty(selectedCategoriesGraphOptions)) return series;
 
     for (const category in selectedCategoriesGraphOptions) {
+      if (!categories[category]) continue;
+
       seriesOptionsEntries.forEach(([key, value]) => {
         series.push({
           name: `${category} ${value}`,
@@ -48,10 +50,10 @@ const useCategoriesGraph = () => {
   const options: Highcharts.Options = {
     chart: {
       type: "line",
-      width: 800,
+      width: 900,
     },
     title: {
-      text: "Time-Series Trend Graph",
+      text: "",
     },
     xAxis: {
       type: "category",
@@ -62,6 +64,9 @@ const useCategoriesGraph = () => {
     series,
     accessibility: {
       enabled: false,
+    },
+    legend: {
+      align: "left",
     },
   };
 

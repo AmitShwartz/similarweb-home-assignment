@@ -15,6 +15,11 @@ const DatePicker = ({ initialDate, onDateSelect }: Props) => {
     setDate(date);
   }, []);
 
+  const onBlur = useCallback(() => {
+    if (!date) return;
+    onDateSelect(date);
+  }, [date, onDateSelect]);
+
   return (
     <ReactDatePicker
       wrapperClassName={classes.datePicker}
@@ -22,6 +27,7 @@ const DatePicker = ({ initialDate, onDateSelect }: Props) => {
       selected={date}
       onChange={handleDateChange}
       onSelect={onDateSelect}
+      onBlur={onBlur}
     />
   );
 };
