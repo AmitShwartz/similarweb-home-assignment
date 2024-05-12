@@ -1,46 +1,80 @@
-# Getting Started with Create React App
+# Similar Home Assignment
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+In this assignment, you are asked to create a web application that visualizes data
+using two different components: A time-series graph and a table.
 
-## Available Scripts
+Approach this project as you would for a large-scale implementation. Pay
+meticulous attention to the architectural layers and ensure the code is scalable
+and of high quality. Feel free to incorporate comments, particularly on edge cases
+that you might not handle but believe deserve attention.
 
-In the project directory, you can run:
+## Table of Contents
 
-### `npm start`
+- [Installation](#installation)
+- [Justifications](#Justifications)
+- [Usage](#usage)
+- [Documentation](#documentation)
+- [Contact](#contact)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Installation
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+### Backend
 
-### `npm test`
+Before proceeding, ensure Docker is installed on your environment. The server and MySQL database run within Docker containers.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+To set up the server and database, execute the `init-project.sh` script located in the project directory using the command:
 
-### `npm run build`
+```sh
+sh init-project.sh
+```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+that doing this next steps:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+1. npm install to backend.
+2. run docker-compose up.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Docker containers:
 
-### `npm run eject`
+- mysql port "3306"
+- adminer port "9090"
+- backend port "8080"
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+if from some reason the script wont work.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Frontend
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Please run `npm i` to install the node_modules packages, and then run `npm start`.
 
 To learn React, check out the [React documentation](https://reactjs.org/).
+
+## Justifications
+
+### Designing Query to Fetch and Serve Data:
+
+1. Use of Indexes: Design the database schema with appropriate indexes on columns frequently used in queries, in our case for example `date` column can be index. This helps speed up data retrieval.
+
+2. Use of Views: Views to pre-calculate and store aggregated metrics. This reduces the computational load during query execution.
+
+### Technologies for Storing and Serving Data:
+
+1. Distributed Databases: Consider using distributed databases for horizontally scalable storage of large datasets such as partitioning.
+
+2. In-Memory Caching: Implement in-memory caching solutions like Redis to cache frequently accessed data and reduce latency in serving requests.
+
+### Solutions for Client-Side Table Display:
+
+1. Pagination: Implement server-side pagination to limit the number of records returned per page, reducing the amount of data transferred over the network and improving performance.
+
+2. Client-Side Filtering and Sorting: Allow users to interactively filter and sort data without needing to fetch additional data from the server. for example I have implemented date range filter for this assignment.
+
+## Usage
+
+returning categories using date range and present an aggregated sum result in graph and table.
+
+## Documentation
+
+[API Documentation](http://localhost:8080/api-docs) - The server must be up for this documentation.
+
+## Contact
+
+For questions, feedback, or support, contact [Amit Shwartz](shwartzamit17@email.com).
