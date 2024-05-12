@@ -8,9 +8,9 @@ const options: swaggerJsdoc.Options = {
     openapi: "3.0.0",
 
     info: {
-      title: "Venn Hood Finder API Documentation",
+      title: "SimilarWeb Trends API Documentation",
       version: "1.0.0",
-      description: "API documentation for Venn Hood Finder",
+      description: "API documentation for SimilarWeb Trends",
     },
   },
   apis: [path.resolve(__dirname, "../routes/*.route.ts")],
