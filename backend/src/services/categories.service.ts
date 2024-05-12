@@ -33,6 +33,7 @@ const buildCategoriesQuery = ({ startDate, endDate }: GetCategoriesParams) => {
 
   const options = {
     raw: true,
+    order: [["date", "ASC"]],
   };
 
   return { where: query, ...options };
