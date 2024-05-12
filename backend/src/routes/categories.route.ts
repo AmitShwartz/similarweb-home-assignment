@@ -8,9 +8,9 @@ const router = Router();
  * /api/categories:
  *   get:
  *     tags:
- *       - Neighborhoods
+ *       - Categories
  *     summary: Get categories
- *     description: Retrieve grouped categories based on search parameters
+ *     description: Retrieve grouped categories based on date range parameters
  *     parameters:
  *       - in: query
  *         name: startDate

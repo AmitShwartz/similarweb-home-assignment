@@ -9,7 +9,7 @@ const CategoriesOptions = ({ categoriesNames }: Props) => {
   return categoriesNames.length ? (
     <>
       <Text fontSize="lg" marginBottom={4}>
-        Select categories to display on the graph:
+        {"Toggle categories to display on the graph (max 2):"}
       </Text>
       <Flex marginBottom={4}>
         {categoriesNames.map((categoryName) => (
