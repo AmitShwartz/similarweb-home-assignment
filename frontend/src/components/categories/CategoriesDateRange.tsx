@@ -7,17 +7,16 @@ import {
 } from "../../utils/format.utils";
 import DatePicker from "../inputs/DatePicker";
 
+const START = "start";
+const END = "end";
+
 const CategoriesDateRange = () => {
   const { startDate, endDate, setStartDate, setEndDate } = useCategoriesStore();
 
   const onDateChange = useCallback(
     (date: Date, type: string) => {
       const formattedDate = formatCategoryDateRequest(date);
-      if (type === "start") {
-        setStartDate(formattedDate);
-      } else {
-        setEndDate(formattedDate);
-      }
+      type === START ? setStartDate(formattedDate) : setEndDate(formattedDate);
     },
     [setEndDate, setStartDate]
   );
@@ -34,11 +33,11 @@ const CategoriesDateRange = () => {
       <Flex>
         <DatePicker
           initialDate={initialStartDate}
-          onDateSelect={(date) => onDateChange(date, "start")}
+          onDateSelect={(date) => onDateChange(date, START)}
         />
         <DatePicker
           initialDate={initialEndDate}
-          onDateSelect={(date) => onDateChange(date, "end")}
+          onDateSelect={(date) => onDateChange(date, END)}
         />
       </Flex>
     </div>
